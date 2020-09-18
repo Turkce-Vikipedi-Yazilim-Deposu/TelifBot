@@ -16,4 +16,4 @@ A bot to check copyright violations on Wikipedia
 ## License
 
 * This project is licensed under the terms of the  [MIT License](https://choosealicense.com/licenses/mit/)
-* Copyright © 2015 Khutuck
+* Copyright © 2020 Khutuck
