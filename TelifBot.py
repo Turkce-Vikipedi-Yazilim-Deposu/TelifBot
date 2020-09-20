@@ -82,7 +82,7 @@ def get_exceptions():
     try:
         # Loads the exceptions list from user page
         wiki = pywikibot.Site('tr', 'wikipedia')
-        exception_json = pywikibot.Page(wiki, "User:Telif Bot/Telif")
+        exception_json = pywikibot.Page(wiki, 'User:%(username)s/Telif' % {'username': wiki.username()})
         json_data = str(exception_json.text)
         json_data = json_data.replace("\n", "")
         json_data = json.loads(json_data)
