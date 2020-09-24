@@ -7,6 +7,8 @@ import requests
 import sys
 import logging
 
+language = 'tr'
+project = 'wikipedia'
 
 def get_html(query_url):
     # Queries the website
@@ -81,7 +83,7 @@ def controller(page):
 def get_exceptions():
     try:
         # Loads the exceptions list from user page
-        wiki = pywikibot.Site('tr', 'wikipedia')
+        wiki = pywikibot.Site(language, project)
         exception_json = pywikibot.Page(wiki, 'User:%(username)s/Telif' % {'username': wiki.username()})
         json_data = str(exception_json.text)
         json_data = json_data.replace("\n", "")
@@ -146,10 +148,8 @@ if __name__ == "__main__":
     # Global Settings
     verbose = 1
     logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-    copyright_query = "https://copyvios.toolforge.org/api.json?version=1&action=search&project=wikipedia&lang=tr&title="
-    human_query = "https://copyvios.toolforge.org/?lang=tr&project=wikipedia&title={0}&oldid=&action=search&use_engine=1&use_links=1&turnitin=0"
-    project = pywikibot.Site('tr', 'wikipedia')
-    site = pywikibot.Site()
+    copyright_query = "https://copyvios.toolforge.org/api.json?version=1&action=search&project=" + project + "&lang=" + language + "&title="
+    human_query = "https://copyvios.toolforge.org/?lang=" + language + "&project=" + project + "&title={0}&oldid=&action=search&use_engine=1&use_links=1&turnitin=0"
 
     # Generators
     # generator = pagegenerators.TextfilePageGenerator(filename='TestPages.txt') # Offline testing
