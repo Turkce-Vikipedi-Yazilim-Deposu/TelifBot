@@ -9,6 +9,7 @@ import logging
 
 language = 'tr'
 project = 'wikipedia'
+wiki = pywikibot.Site(language, project)
 
 def get_html(query_url):
     # Queries the website
@@ -83,7 +84,6 @@ def controller(page):
 def get_exceptions():
     try:
         # Loads the exceptions list from user page
-        wiki = pywikibot.Site(language, project)
         exception_json = pywikibot.Page(wiki, 'User:%(username)s/Telif' % {'username': wiki.username()})
         json_data = str(exception_json.text)
         json_data = json_data.replace("\n", "")
@@ -153,7 +153,7 @@ if __name__ == "__main__":
 
     # Generators
     # generator = pagegenerators.TextfilePageGenerator(filename='TestPages.txt') # Offline testing
-    generator = pagegenerators.LiveRCPageGenerator(site)  # Live RC
+    generator = pagegenerators.LiveRCPageGenerator(wiki)  # Live RC
 
     logging.info("Telif Bot starting up...")
     for page in generator:
